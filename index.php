@@ -52,7 +52,7 @@ if (isset($_GET['delete_activity'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pengelola Jadwal Kebersihan Rumah</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
@@ -143,7 +143,7 @@ if (isset($_GET['delete_activity'])) {
                             <td><?php echo $activity['activity_id']; ?></td>
                             <td><?php echo $activity['member_name']; ?></td>
                             <td><?php echo $activity['aktivitas']; ?></td>
-                            <td><?php echo $activity['tanggal_kegiatan']; ?></td>
+                            <td><?php echo date("d-m-Y", strtotime($activity['tanggal_kegiatan'])); ?></td>
                             <td>
                                 <a href="?edit_activity=<?php echo $activity['activity_id']; ?>">Edit</a>
                                 <a href="?delete_activity=<?php echo $activity['activity_id']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus kegiatan ini?');">Hapus</a>

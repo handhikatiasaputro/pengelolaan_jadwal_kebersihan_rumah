@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require "functions.php";
 
 $id = $_GET['id'];
 
@@ -8,18 +9,8 @@ $sql = "SELECT * FROM member WHERE id = $id";
 $result = $db->query($sql);
 $member = $result->fetch_assoc();
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $_POST['nama'];
-
-    $sql = "UPDATE member SET nama = '$nama' WHERE id = $id";
-    if ($db->query($sql) === TRUE) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
-}
+editMember($db, $id, $nama);
+handleFormSubmission($db);
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Anggota</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">

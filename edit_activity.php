@@ -8,25 +8,12 @@ $sql = "SELECT * FROM kegiatan WHERE id = $id";
 $result = $db->query($sql);
 $activity = $result->fetch_assoc();
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $member_id = $_POST['member_id'];
-    $aktivitas = $_POST['aktivitas'];
-    $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
+handleFormSubmission($db);
 
-    $sql = "UPDATE kegiatan SET member_id = '$member_id', aktivitas = '$aktivitas', tanggal_kegiatan = '$tanggal_kegiatan' WHERE id = $id";
-    if ($db->query($sql) === TRUE) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
-}
-
-// Fetch members for dropdown
-$sql_members = "SELECT * FROM member";
-$members = $db->query($sql_members);
-?>
+//edit
+editActivity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan);
+$members = getAllMembers($db);
+ ?>
 
 <!DOCTYPE html>
 <html lang="id">
@@ -34,7 +21,7 @@ $members = $db->query($sql_members);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Kegiatan</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">

@@ -1,19 +1,23 @@
 <?php
 require 'config.php';
+require "functions.php";
 
 
 // Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $_POST['nama'];
+// if ($_SERVER["REQUEST_METHOD"] == "POST") {
+//     $nama = $_POST['nama'];
 
-    $sql = "INSERT INTO member (nama) VALUES ('$nama')";
-    if ($db->query($sql) === TRUE) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
-}
+//     $sql = "INSERT INTO member (nama) VALUES ('$nama')";
+//     if ($db->query($sql) === TRUE) {
+//         header("Location: index.php");
+//         exit();
+//     } else {
+//         echo "Error: " . $sql . "<br>" . $db->error;
+//     }
+// }
+
+addMember($db, $nama);
+handleFormSubmission($db);
 
 ?>
 
@@ -23,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Anggota</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">

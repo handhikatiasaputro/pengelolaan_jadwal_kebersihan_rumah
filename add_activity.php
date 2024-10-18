@@ -1,24 +1,10 @@
 <?php
 require 'config.php';
+require "functions.php";
 
-// Handle form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $member_id = $_POST['member_id'];
-    $aktivitas = $_POST['aktivitas'];
-    $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
-
-    $sql = "INSERT INTO kegiatan (member_id, aktivitas, tanggal_kegiatan) VALUES ('$member_id', '$aktivitas', '$tanggal_kegiatan')";
-    if ($db->query($sql) === TRUE) {
-        header("Location: index.php");
-        exit();
-    } else {
-        echo "Error: " . $sql . "<br>" . $db->error;
-    }
-}
-
-// Fetch members for dropdown
-$sql_members = "SELECT * FROM member";
-$members = $db->query($sql_members);
+handleFormSubmission($db);
+getAddActivity($db, $member_id, $aktivitas, $tanggal_kegiatan);
+$members = getAllMembers($db);
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +13,7 @@ $members = $db->query($sql_members);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Kegiatan</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
