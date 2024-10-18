@@ -2,20 +2,6 @@
 require 'config.php';
 require "functions.php";
 
-
-// Handle form submission
-// if ($_SERVER["REQUEST_METHOD"] == "POST") {
-//     $nama = $_POST['nama'];
-
-//     $sql = "INSERT INTO member (nama) VALUES ('$nama')";
-//     if ($db->query($sql) === TRUE) {
-//         header("Location: index.php");
-//         exit();
-//     } else {
-//         echo "Error: " . $sql . "<br>" . $db->error;
-//     }
-// }
-
 addMember($db, $nama);
 handleFormSubmission($db);
 
