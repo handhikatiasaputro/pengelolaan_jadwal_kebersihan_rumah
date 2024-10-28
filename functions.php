@@ -33,14 +33,39 @@ function addActivity($db, $member_id, $aktivitas, $tanggal_kegiatan) {
     return $db->query($sql);
 }
 
+function edit_member($db)
+{
+ 
+$id = $_GET['id'];
+
+// Fetch member details
+$sql = "SELECT * FROM member WHERE id = $id";
+$result = $db->query($sql);
+$member = $result->fetch_assoc();
+return $member;
+
+}
+
+function edit_kegiatan()
+{
+    $id = $_GET['id'];
+// Fetch activity details
+$sql = "SELECT * FROM kegiatan WHERE id = $id";
+$result = $db->query($sql);
+$activity = $result->fetch_assoc();
+
+return $activity;
+}
+
+
 // Fungsi untuk mengedit anggota
-function editMember($db, $id, $nama) {
+function update_Member($db, $id, $nama) {
     $sql = "UPDATE member SET nama='$nama' WHERE id='$id'";
     return $db->query($sql);
 }
 
 // Fungsi untuk mengedit kegiatan
-function editActivity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan) {
+function update_Activity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan) {
     $sql = "UPDATE kegiatan SET member_id='$member_id', aktivitas='$aktivitas', tanggal_kegiatan='$tanggal_kegiatan' WHERE id='$id'";
     return $db->query($sql);
 }
@@ -87,7 +112,7 @@ function handleFormSubmission($db) {
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['edit_member'])) {
         $id = $_POST['id'];
         $nama = $_POST['nama'];
-        if (editMember($db, $id, $nama)) {
+        if (update_Member($db, $id, $nama)) {
             header("Location: index.php");
             exit();
         } else {
@@ -101,7 +126,7 @@ function handleFormSubmission($db) {
         $member_id = $_POST['member_id'];
         $aktivitas = $_POST['aktivitas'];
         $tanggal_kegiatan = $_POST['tanggal_kegiatan'];
-        if (editActivity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan)) {
+        if (update_Activity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan)) {
             header("Location: index.php");
             exit();
         } else {

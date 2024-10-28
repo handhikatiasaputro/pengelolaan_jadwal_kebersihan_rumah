@@ -1,17 +1,12 @@
 <?php
 require 'config.php';
 
-$id = $_GET['id'];
 
-// Fetch activity details
-$sql = "SELECT * FROM kegiatan WHERE id = $id";
-$result = $db->query($sql);
-$activity = $result->fetch_assoc();
-
+edit_kegiatan();
 handleFormSubmission($db);
 
 //edit
-editActivity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan);
+update_Activity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan);
 $members = getAllMembers($db);
  ?>
 

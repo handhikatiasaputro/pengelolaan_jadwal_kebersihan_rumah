@@ -2,14 +2,9 @@
 require 'config.php';
 require "functions.php";
 
-$id = $_GET['id'];
 
-// Fetch member details
-$sql = "SELECT * FROM member WHERE id = $id";
-$result = $db->query($sql);
-$member = $result->fetch_assoc();
-
-editMember($db, $id, $nama);
+edit_member();
+update_Member($db, $id, $nama);
 handleFormSubmission($db);
 ?>
 
