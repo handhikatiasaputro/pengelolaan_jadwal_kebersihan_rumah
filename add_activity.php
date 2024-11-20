@@ -3,8 +3,9 @@ require 'config.php';
 require "functions.php";
 
 handleFormSubmission($db);
-getAddActivity($db, $member_id, $aktivitas, $tanggal_kegiatan);
-$members = getAllMembers($db);
+get_add_activity($db, $member_id, $aktivitas, $tanggal_kegiatan);
+$members = get_all_members($db);
+
 ?>
 
 <!DOCTYPE html>

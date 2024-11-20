@@ -2,9 +2,8 @@
 require 'config.php';
 require "functions.php";
 
-addMember($db, $nama);
+add_member($db, $nama);
 handleFormSubmission($db);
-
 ?>
 
 <!DOCTYPE html>

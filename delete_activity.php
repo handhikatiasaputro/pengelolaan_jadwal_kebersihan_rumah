@@ -4,5 +4,5 @@ require "functions.php";
 
 handleFormSubmission($db);
 //mendelete
-deleteActivity($db, $id);
-?>
+delete_activity($db, $id);
+

@@ -2,9 +2,8 @@
 require 'config.php';
 require "functions.php";
 
-
 edit_member();
-update_Member($db, $id, $nama);
+update_member($db, $id, $nama);
 handleFormSubmission($db);
 ?>
 

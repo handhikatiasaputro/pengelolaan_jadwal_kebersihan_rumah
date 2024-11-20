@@ -1,13 +1,12 @@
 <?php
 require 'config.php';
 
-
 edit_kegiatan();
 handleFormSubmission($db);
 
 //edit
 update_Activity($db, $id, $member_id, $aktivitas, $tanggal_kegiatan);
-$members = getAllMembers($db);
+$members = get_all_members($db);
  ?>
 
 <!DOCTYPE html>

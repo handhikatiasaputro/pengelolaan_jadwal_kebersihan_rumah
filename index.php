@@ -6,15 +6,12 @@ require "functions.php";
 handleFormSubmission($db);
 
 // Ambil semua anggota
-$members = getAllMembers($db);
+$members = get_all_members($db);
 
 // Ambil semua kegiatan
-$result_activities = getAllActivities($db);
+$result_activities = get_all_activities($db);
 
-// Jika ada ID anggota untuk mengedit
 $edit_member_id = isset($_GET['edit_member']) ? $_GET['edit_member'] : null;
-$edit_activity_id = isset($_GET['edit_activity']) ? $_GET['edit_activity'] : null;
-
 // Mendapatkan data anggota untuk edit
 $member_to_edit = null;
 if ($edit_member_id) {
@@ -22,6 +19,7 @@ if ($edit_member_id) {
     $member_to_edit = $db->query($sql)->fetch_assoc();
 }
 
+$edit_activity_id = isset($_GET['edit_activity']) ? $_GET['edit_activity'] : null;
 // Mendapatkan data kegiatan untuk edit
 $activity_to_edit = null;
 if ($edit_activity_id) {
@@ -29,10 +27,11 @@ if ($edit_activity_id) {
     $activity_to_edit = $db->query($sql)->fetch_assoc();
 }
 
+
 // Menghapus anggota jika diinginkan
 if (isset($_GET['delete_member'])) {
     $id = $_GET['delete_member'];
-    deleteMember($db, $id);
+    delete_member($db, $id);
     header("Location: index.php");
     exit();
 }
@@ -40,7 +39,7 @@ if (isset($_GET['delete_member'])) {
 // Menghapus kegiatan jika diinginkan
 if (isset($_GET['delete_activity'])) {
     $id = $_GET['delete_activity'];
-    deleteActivity($db, $id);
+    delete_activity($db, $id);
     header("Location: index.php");
     exit();
 }
